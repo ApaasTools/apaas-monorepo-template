@@ -1,0 +1,32 @@
+# Local
+.DS_Store
+*.local
+*.log*
+
+# Dist
+node_modules
+dist/
+
+# Profile
+.rspack-profile-*/
+
+# IDE
+.vscode/*
+!.vscode/extensions.json
+.idea
+
+*.zip
+/apaas-custom-pages/
+/apaas-custom-components/
+/apaas-custom-layout/
+/apaas-custom-list/
+
+/build/
+
+/public/env.js
+
+/zip/
+
+/.kiro/
+
+/.turbo/

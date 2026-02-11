@@ -1,0 +1,5 @@
+packages:
+  - "example/*"
+  - "internal/*"
+  - "packages/*"
+  - "apps/*"

@@ -1,0 +1,11 @@
+{
+  "entry": "src/index.ts",
+  "copyAssets": [],
+  "outputName": "apaas-custom-components",
+  "customWidgetList": [
+    {
+      "code": "FromCustomApprovalHistory",
+      "text": "审批历史(通用)"
+    }
+  ]
+}
