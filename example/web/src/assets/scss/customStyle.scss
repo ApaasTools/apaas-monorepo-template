@@ -1,0 +1,30 @@
+.x-app-layout .layout-header .x-app-header .x-layout-account-control .message-center {
+  display: none;
+}
+
+// 让禁用的input标签可以被复制
+.el-input.is-disabled .el-input__inner {
+  pointer-events: unset !important;
+}
+
+// 消息提示组件弹窗时的主题按钮颜色设置成和系统一样的
+.el-message-box__btns .el-button--primary {
+  color: var(--button-primary-font-color);
+  background-color: var(--button-primary-background-color);
+  border-color: var(--button-primary-border-color);
+  :focus {
+    background: var(--button-primary-hover-background-color);
+    border-color: var(--button-primary-hover-border-color);
+    color: var(--button-primary-hover-font-color);
+  }
+  :hover {
+    background: var(--button-primary-hover-background-color);
+    border-color: var(--button-primary-hover-border-color);
+    color: var(--button-primary-hover-font-color);
+  }
+}
+
+// 隐藏系统左侧菜单的新增图标
+.menutree .menu-item .menu-item-div .route-link:hover .add-icon {
+  display: none !important;
+}
