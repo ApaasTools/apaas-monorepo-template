@@ -1,0 +1,12 @@
+{
+  "entry": "src/index.ts",
+  "copyAssets": [],
+  "outputName": "apaas-custom-crmCustomPage",
+  "list": {
+    "apaas-custom-Test": {
+      "renderLogic": "FORM_LIST_DEMO",
+      "desc": "测试页面",
+      "status": "ENABLE"
+    }
+  }
+}

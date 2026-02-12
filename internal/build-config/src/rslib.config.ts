@@ -36,7 +36,7 @@ const buildConfig: RslibConfig = defineConfig({
 	output: {
 		charset: "utf8",
 		distPath: {
-			root: `zip/${outputName}`,
+			root: process.env.PUBLIC_OUTPUT_DIR ?? `zip/${outputName}`,
 			assets: "public",
 			js: "",
 			css: "",

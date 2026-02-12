@@ -1,6 +1,5 @@
 import type { VueConstructor } from "vue";
 import type { LocaleMessageObject } from "vue-i18n";
-// import VueCompositionAPI from "@vue/composition-api";
 
 /**
  * 转换为首字母大写的驼峰命名

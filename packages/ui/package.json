@@ -15,7 +15,6 @@
     "@internal/typescript-config": "workspace:*"
   },
   "dependencies": {
-    "@apaas/helper": "workspace:*",
-    "@vue/composition-api": "^1.7.2"
+    "@apaas/helper": "workspace:*"
   }
 }

@@ -13,6 +13,10 @@ declare module "vue" {
 			 */
 			registerCustomComponentConfig: <T>(config: T) => void;
 		};
+		LayoutEngine: {
+			getInstance: (layoutId: string) => LayoutEngine;
+			currentLayoutId: string;
+		};
 	}
 }
 
@@ -90,5 +94,9 @@ declare global {
 		 * @description 是否已经引入了 web component
 		 */
 		__web_component_loaded__?: boolean;
+		/**
+		 * @description 自开发布局的 Vue 实例
+		 */
+		CustomLayoutVue?: Vue;
 	}
 }

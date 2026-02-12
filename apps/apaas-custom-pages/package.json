@@ -1,0 +1,15 @@
+{
+  "name": "apaas-custom-list",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "@apaas/helper": "workspace:*",
+    "@apaas/ui": "workspace:*",
+    "dayjs": "^1.11.19",
+    "js-base64": "^3.7.8"
+  },
+  "devDependencies": {
+    "@internal/typescript-config": "workspace:*"
+  }
+}
