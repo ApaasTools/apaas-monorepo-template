@@ -48,43 +48,6 @@ export default {
       isCollapse: false,
       menuData: [
         {
-          index: 'config-manage',
-          name: '配置管理',
-          icon: 'peizhiguanli',
-          children: [
-            {
-              index: 'main-data-field',
-              name: '主数据域管理',
-              icon: 'zhushujuyuguanli'
-            },
-            {
-              index: 'org-manage',
-              name: '组织管理',
-              icon: 'zuzhiguanli'
-            },
-            {
-              index: 'role-manage',
-              name: '角色管理',
-              icon: 'jiaoseguanli'
-            },
-            {
-              index: 'user-role',
-              name: '用户角色',
-              icon: 'yonghujiaose'
-            },
-            {
-              index: 'org-access',
-              name: '组织访问',
-              icon: 'zuzhifangwen'
-            },
-            {
-              index: 'user-manage',
-              name: '用户管理',
-              icon: 'yonghuguanli'
-            }
-          ]
-        },
-        {
           index: 'config-zikaifa',
           name: '自开发',
           icon: 'peizhiguanli',
@@ -188,5 +151,11 @@ export default {
       cursor: pointer;
     }
   }
+}
+::v-deep  .base-menu-item__name {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 100%;
 }
 </style>

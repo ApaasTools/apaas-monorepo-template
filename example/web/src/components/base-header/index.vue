@@ -7,7 +7,8 @@
       <slot></slot>
     </div>
     <div class="base-header__suffix">
-      <slot name="append"></slot>
+      <span class="base-header__suffix-text">此版本为精简版，不包含后台管理功能，去除了很多垃圾代码</span>
+      <!-- <slot name="append"></slot>
       <el-dropdown trigger="click" placement="bottom" @command="handleCommand">
         <person-avatar
           :personName="userInfo.userName"
@@ -32,7 +33,7 @@
             </div>
           </el-dropdown-item>
         </el-dropdown-menu>
-      </el-dropdown>
+      </el-dropdown> -->
     </div>
   </div>
 </template>
@@ -82,7 +83,7 @@ export default {
   }
   .base-header__prefix {
     display: flex;
-    padding-left: 88px;
+    padding-left: 32px;
   }
   .base-header__suffix {
     display: flex;
@@ -92,6 +93,11 @@ export default {
     .person-avatar {
       cursor: pointer;
       @include circleShape(36px);
+    }
+
+    .base-header__suffix-text {
+      color: #999;
+      font-size: 12px;
     }
   }
   .base-header__container {

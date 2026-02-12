@@ -3,6 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
+  "types": "src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./apaas.json": "./apaas.json"
+  },
   "dependencies": {
     "@apaas/helper": "workspace:*",
     "cube-ui": "^1.12.56",

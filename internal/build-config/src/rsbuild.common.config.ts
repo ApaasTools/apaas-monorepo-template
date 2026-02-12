@@ -23,7 +23,7 @@ export const createResolve = (baseUrl: string) => {
 /** 兼容环境变量 */
 export const { publicVars } = loadEnv({ prefixes: ["VUE_APP_"] });
 /** 入口文件 */
-export const entry = process.env.PUBLIC_ENTRY || resolve("./src/index.ts");
+export const entry = process.env.PUBLIC_ENTRY || createResolve(import.meta.url)("./src/index.ts");
 /** 构建输出名 */
 export const outputName = process.env.PUBLIC_OUTPUT_NAME || "dist";
 /** 是否为 main.js 构建 */
@@ -100,7 +100,7 @@ export const rsbuildCommonConfig: RsbuildConfig = {
         .rule("svg")
         .test(/\.svg$/)
         .include.add([
-          resolve("src/assets/icon"),
+          createResolve(import.meta.url)("src/assets/icon"),
           /@x-apaas\/x-dcloud-page-web\/lib\/assets\/icon/,
           /@x-ui\/x-dcloud-ui\/lib\/assets\/icon/,
           /x-dcloud-page-web[\\/]lib[\\/]assets[\\/]icon/,
@@ -152,7 +152,7 @@ export const rsbuildCommonConfig: RsbuildConfig = {
           },
         ],
       },
-      plugins: [scriptSetup({})],
+    //   plugins: [scriptSetup({})],
     },
     postcss: {
       postcssOptions: {

@@ -8,10 +8,10 @@
  */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import WorkbenchRouter from '@/pages/workbench/workbench.router'
+// import WorkbenchRouter from '@/pages/workbench/workbench.router'
 import AdminRouter from '@/pages/admin/admin.router'
-import PersonalRouter from '@/pages/personal/personal.router'
-import AccountRouter from '@/pages/account/account.router'
+// import PersonalRouter from '@/pages/personal/personal.router'
+// import AccountRouter from '@/pages/account/account.router'
 
 Vue.use(VueRouter)
 
@@ -20,10 +20,10 @@ const routes = [
     path: '/',
     redirect: '/admin'
   },
-  WorkbenchRouter,
+  // WorkbenchRouter,
   AdminRouter,
-  PersonalRouter,
-  AccountRouter
+  // PersonalRouter,
+  // AccountRouter
 ]
 
 const router = new VueRouter({

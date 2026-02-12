@@ -17,15 +17,14 @@
     "build:comp": "node ./scripts/build.cjs apaas-custom-components"
   },
   "dependencies": {
-    "@x-apaas/x-apaas-frontend-i18n": "3.3.4-rc.1",
-    "@x-apaas/x-dcloud-bpm": "3.3.4-rc.1",
-    "@x-apaas/x-dcloud-business-event": "3.3.4-rc.2",
-    "@x-apaas/x-dcloud-business-object": "3.2.11-stable.1",
-    "@x-apaas/x-dcloud-low-code-engine": "3.3.4-rc.1",
-    "@x-apaas/x-dcloud-page-engine": "3.3.4-rc.2",
-    "@x-apaas/x-dcloud-page-web": "3.3.4-rc.2",
-    "@x-apaas/x-lib-rule-engine": "3.3.4-rc.1",
-    "@x-ui/x-dcloud-ui": "^0.2.219",
+    "@x-apaas/x-apaas-frontend-i18n": "3.2.20-lts.20240119.2.2026",
+    "@x-apaas/x-dcloud-bpm": "^3.3.4-rc.1",
+    "@x-apaas/x-dcloud-business-event": "3.2.20-lts.20240119.2.2137",
+    "@x-apaas/x-dcloud-business-object": "^3.2.20-lts.20240119.2.1566",
+    "@x-apaas/x-dcloud-low-code-engine": "^3.3.4-rc.1",
+    "@x-apaas/x-dcloud-page-engine": "3.2.20-lts.20240119.2.2242",
+    "@x-apaas/x-dcloud-page-web": "3.2.20-lts.20240119.2.2624",
+    "@x-ui/x-dcloud-ui": "0.3.41",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
     "vue": "^2.6.14"
@@ -76,6 +75,7 @@
     "vue-template-compiler": "^2.6.14",
     "vuex": "^3.6.2",
     "vuex-persist": "^2.3.0",
+    "webpack-code-inspector-plugin": "^1.0.5",
     "webpack-theme-color-replacer": "^1.5.5",
     "worker-rspack-loader": "3.1.2",
     "zip-local": "^0.3.5"
@@ -83,7 +83,11 @@
   "packageManager": "pnpm@10.20.0",
   "pnpm": {
     "overrides": {
-      "x-zxing-js-library": "npm:empty-module@^0.0.2"
+      "x-zxing-js-library": "npm:empty-module@^0.0.2",
+      "@x-apaas/x-apaas-frontend-i18n": "3.2.20-lts.20240119.2.2026",
+      "@x-apaas/x-dcloud-page-engine": "3.2.20-lts.20240119.2.2242",
+      "@x-apaas/x-dcloud-business-event": "3.2.20-lts.20240119.2.2137",
+      "@x-apaas/x-lib-rule-engine": "npm:empty-module@^0.0.2"
     }
   },
   "engines": {
