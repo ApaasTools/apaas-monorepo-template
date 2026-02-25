@@ -1,194 +1,227 @@
-## 项目简介
+# apaas-custom-commmon-plugins
 
-本项目是一个面向得帆云(Apaas)的自定义组件开发工具集，采用 Turborepo + pnpm workspace 的 Monorepo 架构。
+面向 **得帆云（Apaas）** 的自定义扩展开发工具集（自定义组件 / 页面 / 列表 / 布局），采用 **Turborepo + pnpm workspace** 的 Monorepo 架构。
 
-### 项目结构
+> 本仓库主要解决两件事：
+>
+> 1. 统一的开发/构建脚手架（Rsbuild 用于本地开发，Rslib 用于打包产物）
+> 2. 配合「Apaas 调试插件」实现**在线替换调试**（无需反复打包上传即可验证）
 
-```
+---
+
+## 目录结构
+
+```text
 .
-├── apps/                          # 应用目录
-│   └── apaas-custom-components/   # 自定义组件
-│       ├── src/
-│       │   ├── components/        # 自定义组件（如 yc-editor.vue）
-│       │   ├── utils/             # 工具函数
-│       │   ├── i18n/              # 国际化配置
-│       │   └── index.ts           # 入口文件
-│       └── rslib.config.ts        # Rslib 构建配置
-├── packages/                      # 共享包目录
-│   ├── editor/                    # Umo Editor 富文本编辑器包（源码，修改了一丢丢，具体自己看官方文档）
-│   ├── helper/                    # 辅助工具包（mixins、directives 等）
-│   └── ui/                        # UI 组件库（暂时没用到）
+├── apps/                          # 业务应用（可独立 dev/build）
+│   ├── apaas-custom-components/   # 自定义组件（表单组件）
+│   ├── apaas-custom-pages/        # 自定义页面
+│   ├── apaas-custom-list/         # 自定义列表
+│   ├── apaas-custom-layout/       # 自定义布局
+│   ├── apaas-custom-mobile-components/ # 移动端自定义组件
+│   └── apaas-custom-mobile-pages/      # 移动端自定义页面
+├── packages/                      # 共享包
+│   ├── helper/                    # 辅助工具（mixins、utils、i18n 等）
+│   ├── ui/                        # UI 组件库（如有）
+│   └── h5-ui/                     # H5 相关 UI（如有）
 ├── internal/                      # 内部配置包
 │   ├── build-config/              # 构建配置
 │   └── typescript-config/         # TypeScript 配置
-├── scripts/                       # 构建和开发脚本
+├── scripts/                       # 仓库脚本
 └── zip/                           # 打包输出目录（压缩包、开发缓存目录）
 ```
 
+> 提示：示例工程位于仓库根目录的 `example/`（web/mobile），通常用于参考平台侧集成方式与页面工程结构。
+
+---
+
 ## 前期准备
 
-### 1、环境要求
+### 环境要求
 
-- **Node.js** >= 18（推荐 18.20.7）
-- **pnpm** >= 10
+- **Node.js**：推荐 `18.20.7`（仓库已通过 `volta` 固定）
+- **pnpm**：`pnpm@10`（根 `package.json` 中 `packageManager` 为 `pnpm@10.20.0`）
 
-> 💡 建议使用 [`volta`](https://volta.sh/) 来管理 Node.js 环境，确保团队环境一致性。
-
-#### Volta 使用示例
+推荐使用 [Volta](https://volta.sh/) 管理 Node 环境：
 
 ```bash
 # 安装指定 Node 版本
 volta install node@18.20.7
 
-# 全局安装 pnpm
-volta install pnpm
+# 安装 pnpm
+volta install pnpm@10.20.0
 ```
 
-### 2、相关资料
+### 相关资料
 
-- [得帆云开发文档](https://edu.definesys.cn/community/document-center/?id=520252052773797888&typeId=481474084123705344&version=V1_0)
-- [Apaas 调试插件下载](https://github.com/xie392/apaas-crx/releases/tag/v0.0.5)
-- [Apaas 调试插件使用方法](https://av7ieo7ha48.feishu.cn/wiki/TcfMwSz6vixFikkcC1zcChsNnne?from=from_copylink)
+- 得帆云开发文档：
+  https://edu.definesys.cn/community/document-center/?id=520252052773797888&typeId=481474084123705344&version=V1_0
+- Apaas 调试插件下载：
+  https://github.com/xie392/apaas-crx/releases/tag/v0.0.5
+- Apaas 调试插件使用方法：
+  https://av7ieo7ha48.feishu.cn/wiki/TcfMwSz6vixFikkcC1zcChsNnne?from=from_copylink
+
+---
 
 ## 快速开始
 
-### 1、安装依赖
+### 1. 安装依赖
 
 ```bash
 pnpm install
 ```
 
-### 2、配置得帆云调试插件（必须）
+### 2. 配置调试插件（必须）
 
-本项目需要配合得帆云调试插件进行在线调试：
+本仓库的本地开发调试依赖「Apaas 调试插件」进行在线替换。
 
-1. 下载并安装 [Apaas 调试插件](https://github.com/xie392/apaas-crx/releases/tag/v0.0.5)
-2. 参考[使用文档](https://av7ieo7ha48.feishu.cn/wiki/TcfMwSz6vixFikkcC1zcChsNnne?from=from_copylink)配置插件
+1. 安装插件（见上方下载链接）
+2. 按使用文档完成插件配置
+3. 启动本地开发服务后，在浏览器打开得帆云页面，通过插件将资源指向本地
 
-> 📌 项目已迁移到 Rsbuild（开发）和 Rslib（打包），插件配置方式保持不变。
+> 说明：项目已迁移到 **Rsbuild（开发）** 与 **Rslib（打包）**，插件配置方式保持一致。
 
-### 3、开发调试
+### 3. 启动开发服务
+
+以自定义组件为例：
 
 ```bash
-# 启动自定义组件开发服务
 pnpm dev:comp
 ```
 
-启动后，通过得帆云调试插件即可在开发环境中实时预览(需要手动刷新页面)和调试组件。
+启动后在得帆云页面刷新，即可看到最新代码效果（通常需要手动刷新页面）。
 
-## 开发指南
+---
 
-### 创建自定义组件
+## 常用命令
 
-1. 在 `apps/apaas-custom-components/src/components/` 目录下创建 `.vue` 文件
-2. 组件需要使用 `FormWidgetMixin` 混入以获得表单组件能力
-3. 组件会自动注册到得帆云表单引擎（apaas.json）
+根目录脚本（`package.json`）：
 
-示例组件结构：
+```bash
+# 格式化 / 校验
+pnpm format                 # biome format --write
+pnpm lint                   # biome check
+
+# 清理
+pnpm clean                  # turbo clean
+pnpm clean:deps             # 清理 node_modules / lock 等（见 scripts/clean-deps.cjs）
+
+# 开发
+pnpm dev:comp               # 自定义组件
+pnpm dev:page               # 自定义页面
+pnpm dev:list               # 自定义列表
+pnpm dev:layout             # 自定义布局
+
+# 构建（产物输出到 zip/）
+pnpm build:comp
+pnpm build:page
+pnpm build:list
+pnpm build:layout
+```
+
+---
+
+## 开发指南（以自定义组件为例）
+
+### 组件放置位置
+
+在目录 `apps/apaas-custom-components/src/components/` 下创建 `.vue` 组件文件。
+
+### 组件元信息（title）
+
+组件 `export default` 中的 `title` 会被用于注入到 `apaas.json`（无需你手动维护 `apaas.json`）。
+
+示例：
 
 ```vue
 <template>
-  <div>
-    <!-- 组件内容 -->
-  </div>
+  <div>hello</div>
 </template>
 
 <script>
 import { FormWidgetMixin } from "@apaas/helper";
 
 export default {
-  title: "组件名称",
+  name: "Basic",
+  title: "此标题会被注入 apaas.json",
   mixins: [FormWidgetMixin],
-  // 组件逻辑
+  data() {
+    return { count: 0 };
+  },
+  methods: {
+    increment() {
+      this.count++;
+    },
+  },
 };
 </script>
 ```
 
-### 可用命令
+### 自动注册 / 注入机制
 
-```bash
-# 开发
-pnpm dev:comp              # 启动自定义组件开发服务
+- 约定：组件放入 `components/` 目录
+- 构建/开发时会有插件扫描并将组件信息自动注入到 `apaas.json`
+- 你只需要维护组件文件本身
 
-# 构建
-pnpm build:comp            # 构建自定义组件（包含 Web Component）
+> 更细节的实现请查看：`apps/apaas-custom-components/README.md` 以及构建配置（Rsbuild/Rslib 插件链路）。
 
-# 代码质量
-pnpm lint                  # 代码检查
-pnpm format                # 代码格式化
+### i18n（国际化）
 
-# 清理
-pnpm clean                 # 清理构建产物
-pnpm clean:deps            # 清理依赖
-```
+各应用通常存在 `src/i18n/lang/` 目录，用于维护多语言资源。
 
-## 技术栈
+---
 
-### 得帆云 SDK
+## 构建与产物
 
-- `@x-apaas/x-dcloud-page-engine` - 页面引擎
-- `@x-apaas/x-dcloud-low-code-engine` - 低代码引擎
-- `@x-apaas/x-dcloud-business-object` - 业务对象
-- `@x-ui/x-dcloud-ui` - UI 组件库
+- 开发：Rsbuild（只用于本地启动，不参与生产打包）
+- 打包：Rslib（最终可上传平台的产物）
+- 构建产物：默认输出到根目录 `zip/`
 
-### 编辑器
+一般流程：
 
-- **Umo Editor** - 基于 Tiptap 的富文本编辑器
-- **Tiptap** - 无头编辑器框架
+1. `pnpm build:comp`（或 page/list/layout）
+2. 从 `zip/` 目录获取压缩包
+3. 上传到得帆云对应的自定义扩展入口
 
-### 工具库
+---
 
-- **Lodash** - JavaScript 实用工具库
-- **CryptoJS** - 加密库
-- **Tailwind CSS** - 原子化 CSS 框架
+## 技术栈概览
 
-## 包说明
+- Vue 2.x（`vue@^2.6.14`）
+- Turborepo / pnpm workspace
+- Rsbuild / Rslib
+- Biome（lint/format）
+- 得帆云相关 SDK（见根 `package.json` dependencies）
 
-### @apaas/helper
+---
 
-提供开发自定义组件所需的辅助工具：
+## 注意事项 / 排错
 
-- `FormWidgetMixin` - 表单组件混入
-- `readApaasCustomComponent` - 组件读取工具
-- `registerCompositionAPI` - Composition API 注册
-- `mergeI18n` - 国际化合并工具
+1. **Composition API 兼容性**：Composition API 与旧版 mixin 结合可能存在兼容问题；若遇到问题建议优先使用 Options API。
+2. **必须使用调试插件**：不配置插件只能打包上传验证，效率较低。
+3. **Node 版本一致性**：推荐使用 Volta 固定 `18.20.7`。
 
-### @apaas/ui
+---
 
-UI 组件库，提供通用的 UI 组件和样式。
+## FAQ
 
-### @umoteam/editor
+### Q: 如何新增一个自定义组件？
 
-基于 Umo Editor 的富文本编辑器包，支持：
+在 `apps/apaas-custom-components/src/components/` 新建 `.vue`，写好 `title`，并按需混入 `FormWidgetMixin`。
 
-- 丰富的文档编辑功能
-- Markdown 语法支持
-- 多种节点类型插入
-- 文件上传和管理
-- 导出和打印功能
-- Web Component 模式
+### Q: 为什么我写了代码但页面没更新？
 
-## 注意事项
-
-1. **Composition API 兼容性**：目前 Composition API 与自开发组件原有的 mixin 结合使用可能存在问题，建议优先使用 Options API
-2. **插件依赖**：开发调试必须配合得帆云调试插件使用
-3. **Node 版本**：严格使用 Node 18.20.7 以确保构建一致性
-
-## 常见问题
-
-### Q: 如何添加新的自定义组件？
-
-A: 在 `apps/apaas-custom-components/src/components/` 目录下创建 `.vue` 文件，组件会自动注册。
-
-### Q: 如何调试组件？
-
-A: 运行 `pnpm dev:comp` 启动开发服务，配合得帆云调试插件在平台中实时预览。
+通常需要：
+- 确认 `pnpm dev:comp` 正在运行
+- 确认调试插件已经将资源替换到本地地址
+- 手动刷新得帆云页面
 
 ### Q: 构建产物在哪里？
 
-A: 构建后的文件会输出到 `zip/` 目录，可直接上传到得帆云平台。
+在根目录 `zip/`。
 
+---
 
 ## 联系方式
 
-如有问题或建议，可以向我发送消息。我的邮箱为 ymzdjiang@qq.com
+如有问题或建议，请联系：`ymzdjiang@qq.com`
