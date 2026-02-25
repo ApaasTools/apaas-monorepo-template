@@ -1,0 +1,80 @@
+.cube-btn {
+  border-radius: 0.14rem;
+  height: $--app-base-height;
+  padding: 0;
+  font-size: $--app-title-font-size;
+}
+.cube-btn-inline {
+  color: $--app-primary-color;
+  border: 1px solid $--app-primary-color;
+}
+
+.cube-btn-primary {
+  color: $--app-white-font-color !important;
+  background-color: $--app-primary-color;
+  &:active {
+    background-color: $--app-primary-color;
+  }
+}
+
+.cube-input-field {
+  color: $--app-base-font-color;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  &::-webkit-input-placeholder { /* WebKit browsers */
+    color: $--app-notice-font-color;
+  }
+  
+  &::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: $--app-notice-font-color;
+  }
+  
+  &:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: $--app-notice-font-color;
+  
+  } 
+}
+
+.cube-input_active::after {
+  border-color:  $--app-primary-color;
+}
+
+.cube-dialog-content {
+  margin: 1.36rem 0;
+  min-height: 2.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // line-height: 2.85rem;
+}
+
+.cube-dialog-btn {
+  font-size: $--app-title-font-size;
+}
+
+.cube-dialog-btn_highlight {
+  color: $--app-primary-color;
+}
+
+.cube-toast-tip {
+  overflow: auto;
+  max-height: 66vh;
+}
+
+.cube-popup-container {
+  &.cube-popup-center {
+    .cube-popup-content {
+      top: -60%;
+    }
+  }
+}
+
+.cube-pullup-wrapper {
+  .before-trigger {
+    color: #b2b2b2;
+  }
+}
+
+.cube-toast-tip {
+  max-width: 15em;
+}

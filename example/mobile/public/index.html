@@ -1,0 +1,51 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-23 16:20:22
+ * @LastEditTime: 2021-06-25 15:45:55
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /x-product-h5-workspace/packages/xdap-h5/public/index.html
+--> 
+<!DOCTYPE html>
+<html lang="zh-CN" style="font-size: 14px;">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport"
+          content="width=device-width, viewport-fit=cover, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <meta name="theme-color" content="#027aff" />
+    <link rel="icon" href="<%= process.env.BASE_URL %>/img/custom_img/favicon.ico">
+    <!-- <title>得帆云</title> -->
+    <style>
+      .app-loading {
+        position: absolute;
+        top: 42%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+      }
+      .app-loading .loading-gif {
+        width: 60%;
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>
+      <strong>We're sorry but 得帆云 doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <div id="app">
+      <div class="app-loading">
+        <img class="loading-gif" src="<%= BASE_URL %>/img/custom_img/app-loading.gif" alt="">
+        <span class="loading-msg">正在加载<%= process.env.VUE_APP_APP_PLUGIN_NAME %>……</span>
+      </div>
+    </div>
+    <!-- built files will be auto injected -->
+  </body>
+</html>

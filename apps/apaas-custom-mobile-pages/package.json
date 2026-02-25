@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@apaas/helper": "workspace:*",
+    "@apaas/h5-ui": "workspace:*",
     "cube-ui": "^1.12.56",
     "dayjs": "^1.11.19",
     "js-base64": "^3.7.8"

@@ -1,0 +1,14 @@
+{
+  "entry": "src/index.ts",
+  "copyAssets": [],
+  "outputName": "apaas-custom-mobile-pages",
+  "router": {
+    "apaas-custom-Test": {
+      "name": "apaas-custom-Test",
+      "path": "apaas-custom-Test",
+      "meta": {
+        "title": "测试页面"
+      }
+    }
+  }
+}

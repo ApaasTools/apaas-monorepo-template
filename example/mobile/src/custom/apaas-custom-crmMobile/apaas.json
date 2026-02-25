@@ -1,0 +1,56 @@
+{
+  "entry": "index.js",
+  "copyAssets": ["public/custom/apaas-custom-crmMobile"],
+  "router": {
+    "apaas-custom-Qr": {
+      "name": "apaas-custom-Qr",
+      "path": "apaas-custom-Qr",
+      "meta": {
+        "title": "扫码自开发组件测试页面"
+      }
+    }
+  },
+  "customWidgetList": [
+    {
+      "code": "FormCustomQrSanner",
+      "text": "扫码组件"
+    },
+    {
+      "code": "FORM_CUSTOM_FILE_CLASS",
+      "text": "附件上传分类组件(移动端)"
+    },
+    {
+      "code": "FormCustomServiceFileSelection",
+      "text": "服务文件-服务站范围选择（移动端）"
+    },
+    {
+      "code": "FORM_CUSTOM_SUPPLIER_SELECTION",
+      "text": "组织选择（移动端）"
+    },
+    {
+      "code": "FORM_CUSTOM_ENGINE_LIST",
+      "text": "发动机列表（移动端）"
+    },
+    {
+      "code": "FORM_CUSTOM_NEW_ITEM_LIST",
+      "text": "新件清单（移动端）"
+    },
+    {
+      "code": "Form_Custom_Choose_User2",
+      "text": "自定义选人组件2（（移动端）"
+    },
+    {
+      "code": "FORM_CUSTOM_OA_GROUP_TREE",
+      "text": "OA群组树选择组件（移动端）"
+    },
+    {
+      "code": "ScoringTable",
+      "text": "打分表"
+    },
+    {
+      "code": "TotalScoreTable",
+      "text": "打分总表"
+    }
+  ],
+  "outputName": "apaas-custom-crmMobile"
+}

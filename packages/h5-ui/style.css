@@ -1,0 +1,14 @@
+/* vscode 报红正常，无需理会 */
+/* @import "tailwindcss" prefix(yc); */
+@layer theme, components, utilities;
+@import "tailwindcss/theme.css" layer(theme) prefix(yc);
+@import "tailwindcss/utilities.css" layer(utilities) prefix(yc);
+
+/* 重新定义 padding 和 margin utilities，添加 !important */
+@utility p-* {
+  padding: --value(--spacing-*, [length]) !important;
+}
+
+@utility m-* {
+  margin: --value(--spacing-*, [length]) !important;
+}

@@ -6,7 +6,7 @@
 import type { VueConstructor } from "vue";
 import { readApaasCustomComponent, mergeI18n } from "@apaas/helper";
 import i18nMessage from "./i18n";
-import "@apaas/ui/style.css";
+import "@apaas/h5-ui/style.css";
 
 const install = (Vue: VueConstructor): void => {
 	// ============================  注册自开发表页面 ================================

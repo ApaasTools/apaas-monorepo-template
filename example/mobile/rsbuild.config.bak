@@ -1,0 +1,19 @@
+import { defineConfig } from '@rsbuild/core'
+import { mergeWith } from 'lodash-es'
+
+import { rsbuildCommonConfig, entry } from './common.config.mjs'
+
+/**
+ * @description rsbuild 配置
+ * @type {import('@rsbuild/core').RsbuildConfig}
+ * @see https://rsbuild.dev/zh/config/
+ */
+const devConfig = {
+  source: {
+    entry: {
+      index: ['core-js/stable', 'regenerator-runtime/runtime', entry]
+    }
+  }
+}
+
+export default defineConfig(mergeWith(rsbuildCommonConfig, devConfig))

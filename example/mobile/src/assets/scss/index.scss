@@ -1,0 +1,65 @@
+// @import "~normalize.css";
+@import "./cube-ui-custom.scss";
+@import "./media/index.scss";
+
+#app {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: $--app-base-font-color;
+  height: 100%;
+}
+pre {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder,
+.cube-input-field--placeholder {
+  color: $--app-notice-color !important;
+  font-size: 1rem !important;
+}
+
+a {
+  cursor: pointer;
+}
+
+.text-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.text-ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.fix-padding-left {
+  padding-left: 1.143rem !important;
+}
+.active-style {
+  &:active {
+    opacity: .4;
+    transition: opacity .3s;
+  }
+}
+
+.x-svg-icon {
+  font-size: 0;
+}

@@ -1,0 +1,10 @@
+{
+	"extends": "@internal/typescript-config/base.json",
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["src/*"]
+		}
+	},
+	"include": ["src", "env.d.ts"]
+}

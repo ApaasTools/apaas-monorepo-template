@@ -1,0 +1,70 @@
+import { defineConfig } from '@rslib/core'
+import { mergeWith } from 'lodash-es'
+
+import { rsbuildCommonConfig, entry, outputName, isBuildDist, isDev } from './common.config.mjs'
+
+/**
+ * @description rslib 配置
+ * @type {import('@rslib/core').RslibConfig}
+ * @see https://lib.rsbuild.dev/zh/config/
+ */
+const buildConfig = {
+  source: {
+    entry: {
+      index: entry
+    }
+  },
+  lib: [
+    {
+      format: 'umd',
+      umdName: outputName,
+      syntax: ['es5'],
+      output: {
+        target: 'web',
+        filename: {
+          js: isBuildDist ? '[name].[contenthash].js' : `${outputName}.umd.js`
+        }
+      }
+    }
+  ],
+  output: {
+    charset: 'utf8',
+    distPath: {
+      root: outputName,
+      assets: 'public',
+      js: '',
+      css: '',
+      font: 'public/font',
+      img: 'public/img'
+    },
+    filenameHash: false,
+    filename: {
+      html: 'demo.html',
+      css: isBuildDist ? '[name].[contenthash].css' : `${outputName}.css`
+    },
+    assetPrefix: `/app/${outputName}/`,
+    minify: {
+      js: true,
+      css: true
+    },
+    cleanDistPath: true,
+    dataUriLimit: 8 * 1024,
+    legalComments: 'none',
+    externals: [
+      '@x-ui/x-dcloud-ui',
+      '@x-apaas/x-lib-rule-engine',
+      '@x-apaas/x-dcloud-page-web',
+      'x-extension'
+    ]
+  },
+  performance: {
+    buildCache: isDev,
+    chunkSplit: {
+      strategy: isBuildDist ? 'split-by-experience' : 'all-in-one'
+    }
+    // 移除所有 log
+    // removeConsole: true
+  }
+}
+
+export default defineConfig(mergeWith(rsbuildCommonConfig, buildConfig))
