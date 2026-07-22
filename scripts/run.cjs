@@ -174,9 +174,11 @@ function startBuild({ argv, customModulePath, apaasConfig, extracted = {} }) {
   log.info(`构建命令: npx ${buildCmd.join(" ")}`);
 
   // 在 Unix 系统上创建新的进程组，方便后续清理
+  // Windows 上 npx 是 .cmd 批处理文件，spawn 无法直接执行，需要 shell: true
   const buildProcess = spawn("npx", buildCmd, {
     env,
     detached: process.platform !== "win32",
+    shell: process.platform === "win32",
   });
 
   buildProcess.stdout.on("data", (data) => {
