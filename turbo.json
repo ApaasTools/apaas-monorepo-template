@@ -27,10 +27,6 @@
     },
     "clean": {
       "outputs": [".turbo", "dist", "build", "zip"]
-    },
-    "build:wc": {
-      "cache": false,
-      "persistent": true
     }
   }
 }

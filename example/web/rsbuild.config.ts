@@ -14,12 +14,19 @@ const buildConfig = defineConfig({
         api: "legacy",
         sassOptions: {
           silenceDeprecations: ["legacy-js-api", "import", "mixed-decls"],
+          quietDeps: true,
           includePaths: [
             "../node_modules/@x-apaas/x-dcloud-page-web/lib/theme-chalk/theme",
             "../node_modules/@x-ui/x-dcloud-ui/lib/theme-chalk/theme",
             "../node_modules/element-ui/packages/theme-chalk/src",
             "../node_modules/element-ui/lib/theme-chalk",
           ],
+          logger: {
+            warn(message, options) {
+              if (/mixed-decls/.test(String(message))) return;
+              console.warn(message);
+            },
+          },
         },
         additionalData: `@import "@/assets/scss/variable.scss";`,
       },
