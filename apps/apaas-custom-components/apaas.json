@@ -4,8 +4,8 @@
   "outputName": "apaas-custom-components",
   "customWidgetList": [
     {
-      "code": "FromCustomApprovalHistory",
-      "text": "审批历史(通用)"
+      "code": "FromCustomTest",
+      "text": "测试组件"
     }
   ]
 }

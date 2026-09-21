@@ -4,11 +4,138 @@
 @import "tailwindcss/theme.css" layer(theme) prefix(yc);
 @import "tailwindcss/utilities.css" layer(utilities) prefix(yc);
 
-/* 重新定义 padding 和 margin utilities，添加 !important */
+/* 间距与字号固定为 px，避免宿主应用缩小 html 根字号导致组件整体变小 */
+@theme prefix(yc) {
+  --spacing: 4px;
+  --text-xs: 12px;
+  --text-xs--line-height: 16px;
+  --text-sm: 14px;
+  --text-sm--line-height: 20px;
+  --text-base: 16px;
+  --text-base--line-height: 24px;
+  --text-lg: 18px;
+  --text-lg--line-height: 28px;
+  --text-xl: 20px;
+  --text-xl--line-height: 28px;
+}
+
+@layer utilities {
+  [class*="yc\:"] {
+    box-sizing: border-box;
+  }
+}
+
+/* 重新定义 padding 和 margin utilities，添加 !important
+   说明：自定义 @utility 与内置规则共存（生成两份，!important 一份胜出），
+   m-auto / 负值 / 逻辑属性 等内置变体不受影响 */
 @utility p-* {
+  padding: --spacing(--value(number)) !important;
   padding: --value(--spacing-*, [length]) !important;
+}
+@utility px-* {
+  padding-inline: --spacing(--value(number)) !important;
+  padding-inline: --value(--spacing-*, [length]) !important;
+}
+@utility py-* {
+  padding-block: --spacing(--value(number)) !important;
+  padding-block: --value(--spacing-*, [length]) !important;
+}
+@utility ps-* {
+  padding-inline-start: --spacing(--value(number)) !important;
+  padding-inline-start: --value(--spacing-*, [length]) !important;
+}
+@utility pe-* {
+  padding-inline-end: --spacing(--value(number)) !important;
+  padding-inline-end: --value(--spacing-*, [length]) !important;
+}
+@utility pt-* {
+  padding-top: --spacing(--value(number)) !important;
+  padding-top: --value(--spacing-*, [length]) !important;
+}
+@utility pr-* {
+  padding-right: --spacing(--value(number)) !important;
+  padding-right: --value(--spacing-*, [length]) !important;
+}
+@utility pb-* {
+  padding-bottom: --spacing(--value(number)) !important;
+  padding-bottom: --value(--spacing-*, [length]) !important;
+}
+@utility pl-* {
+  padding-left: --spacing(--value(number)) !important;
+  padding-left: --value(--spacing-*, [length]) !important;
 }
 
 @utility m-* {
-  margin: --value(--spacing-*, [length]) !important;
+  margin: --spacing(--value(number)) !important;
+  margin: --value(--spacing-*, "auto", [length]) !important;
+}
+@utility mx-* {
+  margin-inline: --spacing(--value(number)) !important;
+  margin-inline: --value(--spacing-*, "auto", [length]) !important;
+}
+@utility my-* {
+  margin-block: --spacing(--value(number)) !important;
+  margin-block: --value(--spacing-*, "auto", [length]) !important;
+}
+@utility ms-* {
+  margin-inline-start: --spacing(--value(number)) !important;
+  margin-inline-start: --value(--spacing-*, "auto", [length]) !important;
+}
+@utility me-* {
+  margin-inline-end: --spacing(--value(number)) !important;
+  margin-inline-end: --value(--spacing-*, "auto", [length]) !important;
+}
+@utility mt-* {
+  margin-top: --spacing(--value(number)) !important;
+  margin-top: --value(--spacing-*, "auto", [length]) !important;
+}
+@utility mr-* {
+  margin-right: --spacing(--value(number)) !important;
+  margin-right: --value(--spacing-*, "auto", [length]) !important;
+}
+@utility mb-* {
+  margin-bottom: --spacing(--value(number)) !important;
+  margin-bottom: --value(--spacing-*, "auto", [length]) !important;
+}
+@utility ml-* {
+  margin-left: --spacing(--value(number)) !important;
+  margin-left: --value(--spacing-*, "auto", [length]) !important;
+}
+
+/* 负值 margin（padding 无负值） */
+@utility -m-* {
+  margin: --spacing(--value(number) * -1) !important;
+  margin: calc(--value([length]) * -1) !important;
+}
+@utility -mx-* {
+  margin-inline: --spacing(--value(number) * -1) !important;
+  margin-inline: calc(--value([length]) * -1) !important;
+}
+@utility -my-* {
+  margin-block: --spacing(--value(number) * -1) !important;
+  margin-block: calc(--value([length]) * -1) !important;
+}
+@utility -ms-* {
+  margin-inline-start: --spacing(--value(number) * -1) !important;
+  margin-inline-start: calc(--value([length]) * -1) !important;
+}
+@utility -me-* {
+  margin-inline-end: --spacing(--value(number) * -1) !important;
+  margin-inline-end: calc(--value([length]) * -1) !important;
+}
+@utility -mt-* {
+  margin-top: --spacing(--value(number) * -1) !important;
+  margin-top: calc(--value([length]) * -1) !important;
+}
+@utility -mr-* {
+  margin-right: --spacing(--value(number) * -1) !important;
+  margin-right: calc(--value([length]) * -1) !important;
+}
+@utility -mb-* {
+  margin-bottom: --spacing(--value(number) * -1) !important;
+  margin-bottom: calc(--value([length]) * -1) !important;
+}
+@utility -ml-* {
+  margin-left: --spacing(--value(number) * -1) !important;
+  margin-left: calc(--value([length]) * -1) !important;
 }

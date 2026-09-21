@@ -46,7 +46,7 @@ const buildConfig: RslibConfig = defineConfig({
 		filenameHash: false,
 		assetPrefix: `/app/${outputName}/`,
 		minify: {
-			js: false,
+			js: true,
 			css: true,
 		},
 		cleanDistPath: true,
@@ -65,8 +65,8 @@ const buildConfig: RslibConfig = defineConfig({
 		// chunkSplit: {
 		//   strategy: isBuildDist ? "split-by-experience" : "all-in-one",
 		// },
-		// 移除所有 log
-		// removeConsole: true,
+		// 移除所有 console 语句
+		removeConsole: true,
 	},
 });
 

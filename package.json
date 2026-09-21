@@ -37,6 +37,7 @@
     "@babel/plugin-transform-runtime": "^7.28.0",
     "@babel/plugin-transform-typescript": "^7.28.0",
     "@babel/preset-typescript": "^7.27.1",
+    "@babel/runtime": "^7.28.6",
     "@babel/runtime-corejs3": "^7.28.4",
     "@biomejs/biome": "2.2.7",
     "@internal/build-config": "workspace:*",

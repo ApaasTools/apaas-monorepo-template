@@ -10,8 +10,8 @@ export function pluginBabel() {
 						targets: {
 							browsers: ["> 1%", "last 2 versions", "not ie <= 8"],
 						},
-						useBuiltIns: "usage",
-						corejs: 3,
+						// useBuiltIns: "usage",
+						useBuiltIns: false,
 					},
 				],
 				"@babel/preset-typescript",
@@ -20,7 +20,7 @@ export function pluginBabel() {
 				[
 					"@babel/plugin-transform-runtime",
 					{
-						corejs: 3,
+						corejs: false,
 						helpers: true,
 						regenerator: true,
 						useESModules: false,
