@@ -1,7 +1,7 @@
 {
   "entry": "src/index.ts",
   "copyAssets": [],
-  "outputName": "apaas-custom-mobile-pages",
+  "outputName": "apaas-custom-mobile-components",
   "router": {
     "apaas-custom-Test": {
       "name": "apaas-custom-Test",

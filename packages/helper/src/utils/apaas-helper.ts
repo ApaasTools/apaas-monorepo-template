@@ -141,3 +141,38 @@ export let registerTailwind = () => {
 //     registerCompositionAPI = () => {};
 //   }
 // };
+
+/**
+ * 获取平台全局环境变量 window.GLOBAL_ENV 上的指定字段
+ * @param key GLOBAL_ENV 上的字段名
+ * @returns 字段值（不存在时返回 undefined）
+ * @example
+ * const appId = getGlobalEnv('VUE_APP_APP_ID')
+ */
+export function getGlobalEnv<K extends keyof NonNullable<Window["GLOBAL_ENV"]>>(
+	key: K,
+): NonNullable<Window["GLOBAL_ENV"]>[K] {
+	return window.GLOBAL_ENV?.[key];
+}
+
+/**
+ * 获取自定义环境变量 window.GLOBAL_ENV.VUE_APP_CUSTOM_ENV 中的指定字段
+ *
+ * 平台的业务开关 / 环境配置大多挂在 VUE_APP_CUSTOM_ENV 下，统一走此方法取值
+ *
+ * @param key VUE_APP_CUSTOM_ENV 上的字段名
+ * @param defaultValue 可选，字段不存在时的默认值
+ * @returns 字段值（不存在时返回 defaultValue）
+ * @example
+ * const asyncOp = getCustomEnv('LIST_TABLE_OPERATION_ASYNC', false)
+ * const camera = getCustomEnv<string>('VUE_APP_CAMERA_SERVICE', '')
+ */
+export function getCustomEnv<T = any>(
+	key: string,
+	defaultValue?: T,
+): T | undefined {
+	const value = window.GLOBAL_ENV?.VUE_APP_CUSTOM_ENV?.[key];
+	return (value === undefined || value === null ? defaultValue : value) as
+		| T
+		| undefined;
+}

@@ -1,14 +1,24 @@
-/* vscode 报红正常，无需理会 */
-/* @import "tailwindcss" prefix(yc); */
-@layer theme, components, utilities;
-@import "tailwindcss/theme.css" layer(theme) prefix(yc);
-@import "tailwindcss/utilities.css" layer(utilities) prefix(yc);
+/* 刻意不引入 @tailwind base：preflight 是元素级 reset（h1~h6 / ul / button / img / * 等），
+   会污染宿主应用样式。下面两条把 preflight 里我们确实依赖的部分，按 yc- 前缀限定补回来。
 
-/* 重新定义 padding 和 margin utilities，添加 !important */
-@utility p-* {
-  padding: --value(--spacing-*, [length]) !important;
+   Tailwind v3 的 border-width 工具类（border、border-l-[3px] 等）只输出 width 和 color，
+   border-style / border-width 的默认值一直由 preflight 的
+   `*, ::before, ::after { border-width: 0; border-style: solid }` 提供。
+   删掉 base 后浏览器默认 border-style: none，border 工具类写 1px / 3px 都渲染不出来
+   （计算值被归一化成 0px），所以这两条必须成对补上：
+   - border-style: solid 让边框能画出来
+   - border-width: 0 压掉浏览器默认的 medium(3px)，否则所有带 yc- 的元素都会被描上 3px 实线
+
+   注意顺序：:where() 特异性为 0，与同样为 0 的 .yc-border / .yc-border-l-[3px] /
+   .yc-border-dashed 打平后由源码顺序决胜，所以必须写在 @tailwind utilities 之前。 */
+:where([class*="yc-"]) {
+  border-width: 0;
+  border-style: solid;
 }
 
-@utility m-* {
-  margin: --value(--spacing-*, [length]) !important;
+@tailwind utilities;
+
+/* 同上，只给带 yc- 前缀的元素补 box-sizing。 */
+[class*="yc-"] {
+  box-sizing: border-box;
 }

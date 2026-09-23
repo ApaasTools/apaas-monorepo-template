@@ -212,15 +212,6 @@ export const FormWidgetMixin = {
 				widget: this.widget,
 			});
 		},
-		// 显示字段获取uuid
-		getUid(code) {
-			const arr = this.formItemList.filter(
-				(i) => i.modelField && i.modelField === code,
-			);
-			if (arr.length === 1) {
-				return arr[0].uuid;
-			}
-		},
 		// 全部(显示/隐藏)字段获取配置
 		getHideConfig(code) {
 			const arr = this.formEngine.formDataControl.allTileFormItemList.filter(
@@ -234,58 +225,24 @@ export const FormWidgetMixin = {
 			}
 		},
 		/**
-		 * 全部(显示/隐藏)字段获取uuid xx.22 xx.223
+		 * 查询表单中某个字段的 uuid
+		 * @param {string} modelCode 模型字段
 		 */
-		getHideUid(code) {
-			const arr = this.formEngine.formDataControl.allTileFormItemList.filter(
-				(i) => i.modelField && i.modelField.includes(code),
+		getUuid(modelCode) {
+			const conf = this.formEngine.formDataControl?.allTileFormItemList?.find(
+				(i) => i?.modelField === modelCode,
 			);
-			if (arr.length === 1) {
-				return arr[0]?.uuid;
-			} else {
-				let obj = arr.find((i) => {
-					const isCode = i.modelField.split(".").pop();
-					const newCode = code.split(".").pop();
-					return isCode === newCode;
-				});
-				return obj?.uuid;
-			}
-		},
-		// 获取表格的uuid
-		getTableUuid(code) {
-			const arr = this.formEngine.formDataControl.allTileFormItemList.filter(
-				(item) => item.tableModelCode && item.tableModelCode === code,
-			);
-			if (arr.length === 1) {
-				return arr[0].uuid;
-			}
-		},
-		// 获取表格表头的uuid
-		getTableColumnUuid(tableCode, code) {
-			const arr = this.formEngine.formDataControl.allTileFormItemList.filter(
-				(item) => item.tableModelCode && item.tableModelCode === tableCode,
-			);
-			const obj = arr[0].tableColumn.find((i) => i.modelField.includes(code));
-			return obj.uuid;
-		},
-		// 通过表名加对应的字段名获取对应formData的具体数据
-		getformData(code) {
-			const arr = this.formEngine.formDataControl.allTileFormItemList.filter(
-				(i) => i.modelField && i.modelField.includes(code),
-			);
-			if (arr.length === 1) {
-				return this.formData[arr[0].uuid];
-			}
+			if (conf) return conf.uuid;
 			return null;
 		},
-		getformData2(code) {
-			const arr = this.formEngine.formDataControl.allTileFormItemList.filter(
-				(i) => i.modelField && i.modelField.includes(code),
-			);
-			if (arr.length >= 1) {
-				return this.formData[arr[0].uuid];
-			}
-			return null;
+		/**
+		 * 查询表单中字段的值
+		 * @param {string} modelCode 模型字段
+		 */
+		getFormData(modelCode) {
+			const uuid = this.getUuid(modelCode);
+			if (!uuid) return null;
+			return this.formData[uuid] ?? null;
 		},
 	},
 };

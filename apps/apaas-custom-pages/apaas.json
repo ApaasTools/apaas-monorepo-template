@@ -1,7 +1,7 @@
 {
   "entry": "src/index.ts",
   "copyAssets": [],
-  "outputName": "apaas-custom-list-demo",
+  "outputName": "apaas-custom-pages",
   "router": {
     "apaas-custom-Test": {
       "name": "apaas-custom-Test",
