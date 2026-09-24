@@ -60,7 +60,7 @@ const buildConfig: RslibConfig = defineConfig({
 		],
 	},
 	performance: {
-		buildCache: isDev,
+		buildCache: false,
 		printFileSize: true, // 打印文件大小
 		// chunkSplit: {
 		//   strategy: isBuildDist ? "split-by-experience" : "all-in-one",
