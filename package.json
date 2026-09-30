@@ -85,15 +85,6 @@
     "zip-local": "^0.3.5"
   },
   "packageManager": "pnpm@10.20.0",
-  "pnpm": {
-    "overrides": {
-      "x-zxing-js-library": "npm:empty-module@^0.0.2",
-      "@x-apaas/x-apaas-frontend-i18n": "3.2.20-lts.20240119.2.2026",
-      "@x-apaas/x-dcloud-page-engine": "3.2.20-lts.20240119.2.2242",
-      "@x-apaas/x-dcloud-business-event": "3.2.20-lts.20240119.2.2137",
-      "@x-apaas/x-lib-rule-engine": "npm:empty-module@^0.0.2"
-    }
-  },
   "engines": {
     "pnpm": ">=8.15.0",
     "node": ">=16.0.0"
