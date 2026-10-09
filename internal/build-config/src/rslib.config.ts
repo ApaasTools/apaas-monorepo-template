@@ -66,7 +66,7 @@ const buildConfig: RslibConfig = defineConfig({
 		//   strategy: isBuildDist ? "split-by-experience" : "all-in-one",
 		// },
 		// 移除所有 console 语句
-		removeConsole: true,
+		removeConsole: !isDev,
 	},
 });
 
