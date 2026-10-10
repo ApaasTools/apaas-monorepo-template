@@ -18,7 +18,7 @@ const install = (Vue: VueConstructor): void => {
 	const components = readApaasCustomComponent(context, true);
 
 	components.forEach(({ name, component }) => {
-		Vue.component(`apaas-custom-list-${name}`, component);
+		Vue.component(`apaas-custom-${name}`, component);
 	});
 
 	// ============================ 注册多语言 ===============================
