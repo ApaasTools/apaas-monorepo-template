@@ -20,6 +20,7 @@
     "build:layout": "node ./scripts/build.cjs apaas-custom-layout"
   },
   "dependencies": {
+    "axios": "^1.7.9",
     "@x-apaas/x-apaas-frontend-i18n": "3.2.20-lts.20240119.2.2026",
     "@x-apaas/x-dcloud-bpm": "^3.3.4-rc.1",
     "@x-apaas/x-dcloud-business-event": "3.2.20-lts.20240119.2.2137",
@@ -34,6 +35,7 @@
     "vue": "^2.6.14"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.28.0",
     "@babel/plugin-transform-runtime": "^7.28.0",
     "@babel/plugin-transform-typescript": "^7.28.0",
     "@babel/preset-typescript": "^7.27.1",
